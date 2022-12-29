@@ -1,0 +1,16 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+pyspark = {extras = ["ml", "mllib", "sql"], version = "*"}
+
+[dev-packages]
+jupyter = "*"
+black = {extras = ["jupyter"], version = "*"}
+isort = "*"
+flake8 = "*"
+
+[requires]
+python_version = "3.10"
