@@ -67,6 +67,11 @@
 - `F.col("map_column.key")` or `F.col("map_column")["key"]` will access items from a map column.
 - Struct is like a JSON: keys are strings, values can be any type; the number of fields and their names are fixed for every row.
 - Struct is like a nested data frame.
+- `F.explode()` will create a separate row for each element of an array or a map. `F.posexplode()` will do the same, additionally adding a column with the position of the element.
+- `F.explode_outer()` is the same, exept for empty arrays/maps it returns the row with a `null` value.
+- `F.collect_list()` and `F.collect_set()` do the opposite of `F.explode()`: they gather values into arrays.
+- To collect a mp, pass two collected arrays to `F.map_from_arrays()`.
+- `F.struct()` creates a struct column out of multiple columns.
 
 ### Configuration
 - An existing session does not allow for changing JVM configuration; a full reset is required.
