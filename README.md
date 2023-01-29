@@ -1,7 +1,7 @@
 # Spark: analytics engine for large-scale data processing
 
 ### General
-- Spark is lazy: transformations are stored untill an action triggers optimization and execution.
+- Spark is lazy: transformations are stored until an action triggers optimization and execution.
 - `SparkSession` is the modern entry point, holding both the `SparkContext` and `SQLContext`.
 - A *Resilient Distributed Dataset (RDD)* is a low level structure. It is a collection of rows.
 - A *Data Frame* is a more high-level structure. Can be thought of as a table. Operations are mostly done on columns.
@@ -11,10 +11,10 @@
 - `spark.read` holds the `DataFrameReader` object.
 - `inferSchema=True` will make Spark go trough the data twice, which can be costly.
 - `DataFrame.write` holds the `DataFrameWriter` object.
-- Ordering the data frames before writing in general has no effect, since reading is a distribued operation.
+- Ordering the data frames before writing in general has no effect, since reading is a distributed operation.
 
 ### Distributed data
-- A ***shuffle*** is the movement of data bateween the nodes.
+- A ***shuffle*** is the movement of data between the nodes.
 - `.coalesce()` will reduce the number of partitions as a narrow operation, i.e. without shuffling.
 - Joining cares about where the data is: to compare, the records have to be on the same machine. Spark will do a shuffle if it's not.
 
@@ -22,8 +22,8 @@
 - `import pyspark.sql.functions as F`
 - `.select()` is like `SELECT` in SQL. It's an entry point to manipulating columns.
 - `F.col` is the most versatile way to reference columns of a data frame.
-- `.alias()` will rename a column. `.withColumnRenamed()` is a more cumbersome altrnative.
-- `.orderBy(col.desc())` is the same as `.orderBy("col", ascending=False)`.
+- `.alias()` will rename a column. `.withColumnRenamed()` is an alternative.
+- `.orderBy(Columns.desc())` is the same as `.orderBy("col", ascending=False)`.
 - `.drop()` will drop columns from a data frame, doing nothing if they don't exist.
 - `.cast()` will cast a column into a data type.
 - `.withColumn()` will add a column to a data frame, overwriting if exist.
@@ -60,10 +60,10 @@
 ### Complex types
 - *Complex*, *container*, or *compound* type in Spark is a type that contains other types.
 - The complex types in PySpark are *array*, *map*, and *struct*.
-- Arrays are containers fir values of the same type. Spark will silently upcast date to the lowest possible type that can hold all values.
+- Arrays are containers for values of the same type. Spark will silently up-cast data to the lowest possible type that can hold all values.
 - `df.select(F.col("array_col").getItem(index))` will access items from an array column.
 - `F.size()` will return the size of a complex type.
-- Map is like a typed dictionary: it contans pairs of keys and values, where the keys are all of the same type and the values are all of the same type.
+- Map is like a typed dictionary: it contains pairs of keys and values, where the keys are all of the same type and the values are all of the same type.
 - `F.col("map_column.key")` or `F.col("map_column")["key"]` will access items from a map column.
 - Struct is like a JSON: keys are strings, values can be any type; the number of fields and their names are fixed for every row.
 - Struct is like a nested data frame.
@@ -74,5 +74,5 @@
 
 ### Workflow
 - Plan the steps on paper.
-- Injest, print the structure with `.printSchema()`, take a look at a sample with `.show(n, truncate, vertical)`.
+- Ingest, print the structure with `.printSchema()`, take a look at a sample with `.show(n, truncate, vertical)`.
 - `.dtypes` contains a list of column names and their types.
