@@ -1,5 +1,9 @@
 # Spark: analytics engine for large-scale data processing
 
+- **Interactive shells**. `spark-shell` is Scala, `pyspark` is Python.
+Both automatically create sessions on start and close them on exit.
+The session is binded to `spark`, the context is binded to `sc`.
+
 ### General
 - Spark is lazy: transformations are stored until an action triggers optimization and execution.
 - `SparkSession` is the modern entry point, holding both the `SparkContext` and `SQLContext`.
