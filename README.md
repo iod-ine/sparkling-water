@@ -54,6 +54,10 @@ The session is binded to `spark`, the context is binded to `sc`.
 - Left semi-join `"left_semi"` will filter keep the records of the left table that have a match in the right table.
 - Left anti-join `"left_anti"` is the opposite, will keep only records that don’t have a match.
 - A cross join `"cross"` is the nuclear option that returns the cross product: every possible pair, ignoring the predicate.
+- Ways to deal with a name clash during a join:
+    - Rename them before the join.
+    - `.alias()` the tables during the call to `.join()` and access them using `F.col("alias.column")`.
+    - Access the columns using `original_df["column"]`.
 
 ### Groups and aggregations
 - `.groupby()` returns a `GroupedData` object.
